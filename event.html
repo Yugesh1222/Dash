@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucafama Events - DG Vaishnav College</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===== NAV SHRINK ON SCROLL ===== */
+nav{
+  transition: all 0.3s ease;
+}
+
+nav.shrink{
+  padding: 2px 0;              /* height kammi */
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(14px);
+}
+
+nav.shrink .logo img{
+  height: 36px;                /* logo small */
+}
+nav{
+  position:sticky;
+  top:0;
+  z-index:1000;  /* nav always on top */
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+  background:url("bg6.jpg");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  color:#fff;
+}
+
+/* Page Fade In */
+@keyframes pageFade{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+#confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+.particle{position:absolute;width:10px;height:10px;background:red;opacity:0.8;border-radius:50%;animation:fall linear infinite;}
+@keyframes fall{0%{transform:translateY(-10px);}100%{transform:translateY(110vh);}}
+
+
+.college-header{width:100%;text-align:center;position:relative;z-index:1;}
+.college-header img{max-width:100%;height:auto;}
+nav{
+  position:sticky;
+  top:0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  padding:6px 0;          /* 🔥 height increase */
+}
+.menu .logo img{
+  height: 46px;
+  width: auto;
+  display: block;
+
+  
+
+  animation: logoFloat 3s ease-in-out infinite;
+}
+nav .menu{
+  max-width:1250px;
+  margin:auto;
+  display:flex;
+  align-items:center;        /* 🔥 SAME LINE */
+  justify-content:space-between;
+  padding:0 6px;
+  flex-wrap:nowrap;          /* ❌ wrap stop */
+}
+
+.page-title{text-align:center;padding:30px 20px;margin-bottom:10px;position:relative;z-index:1;}
+.page-title h1{
+  position:relative;
+}
+
+.page-title h1{
+  font-size:38px;
+  font-weight:900;
+  text-transform:uppercase;
+
+  background:linear-gradient(90deg,#ff0000,#ff9d00,#fff000);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  animation: fireGlow 2s infinite alternate;
+}
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+@keyframes fireGlow{
+  0%{
+    text-shadow:0px 0px 10px #ff0000,
+                0px 0px 30px #ff5c00;
+  }
+  100%{
+    text-shadow:0px 0px 30px #ff0000,
+                0px 0px 60px #ff9d00;
+  }
+}
+.page-title p{
+font-size:16px;
+color:#fff;
+margin-top:10px;
+  text-shadow: 0 0 8px rgba(255,59,59,0.8);
+}
+
+@keyframes gradientText{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+@keyframes pulse{
+0%,100%{text-shadow:0 0 10px #ff4e50,0 0 20px #f9d423,0 0 30px #24c6dc;}
+50%{text-shadow:0 0 20px #ff4e50,0 0 40px #f9d423,0 0 60px #24c6dc;}
+}
+/* Neon Glow */
+@keyframes glow{
+  0%{text-shadow:0 0 10px #ff4e50;}
+  50%{text-shadow:0 0 25px #f9d423;}
+  100%{text-shadow:0 0 10px #24c6dc;}
+}
+
+.event-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:25px;
+  max-width:1300px;
+  margin:auto;
+  padding:20px;
+  position:relative;
+  z-index:1;
+}
+
+/* Improved Card Entrance + Float */
+.event-card{
+  background:#111;border-radius:12px;overflow:hidden;
+  box-shadow:0 4px 15px rgba(255,255,255,0.05);
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(80px) rotateX(5deg);
+  transition:.8s ease;
+  animation:softFloat 6s ease-in-out infinite;
+}
+
+.event-card.visible{
+  opacity:1;
+  transform:translateY(0) rotateX(0deg);
+  box-shadow:0 15px 40px rgba(255,94,58,0.6),0 0 30px rgba(249,212,35,0.5);
+}
+
+@keyframes softFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+
+.event-card:hover{
+transform:rotateY(10deg) rotateX(5deg) translateY(-10px) scale(1.05);
+}
+.event-card.visible{
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.08);
+}
+
+.event-image-container{position:relative;overflow:hidden;width:100%;aspect-ratio:4/5;}
+.event-image{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;}
+.event-card:hover .event-image{transform:scale(1.05);}
+
+.event-image-container::after{
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:linear-gradient(120deg,rgba(255,255,255,0.3) 0%,rgba(255,255,255,0) 60%);
+  transform:rotate(25deg) translateX(-100%);
+  transition:all 0.7s ease;
+}
+.event-card:hover .event-image-container::after{transform:rotate(25deg) translateX(100%);}
+
+.event-details{padding:15px;text-align:center;background:#111;}
+.event-title{font-size:1.2rem;font-weight:600;margin:0 0 8px;color:#fff;}
+.event-description{font-size:.9rem;color:#ccc;margin:0;font-weight:400;}
+
+footer{width:100%;background:#000;text-align:center;padding:10px;font-size:13px;position:relative;z-index:1;}
+.social-icons a{color:#fff;margin:0 5px;font-size:18px;transition:0.3s;}
+.social-icons a:hover{color:#f9d423;transform:rotate(20deg) scale(1.2);}
+
+/* Modal + Blur */
+.modal{
+display:none;
+position:fixed;
+left:0;top:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.85);
+justify-content:center;
+align-items:center;
+z-index:20;
+backdrop-filter:blur(6px);
+}
+
+.modal-content{
+  background:#111;padding:15px;border-radius:12px;max-width:420px;width:95%;text-align:center;
+  animation:popUp 0.5s ease-out, shake 0.3s ease 0.5s 1;
+}
+.modal-content img{width:100%;border-radius:10px;}
+.close{float:right;font-size:25px;font-weight:bold;cursor:pointer;}
+.btn{
+display:inline-block;
+margin-top:10px;
+padding:10px 15px;
+background:#222;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:500;
+transition:all 0.3s ease;
+box-shadow:0 0 5px #ff4e50,0 0 10px #f9d423;
+}
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px #ff4e50,0 0 40px #f9d423,0 0 60px #24c6dc;
+}
+
+
+@keyframes popUp{0%{opacity:0;transform:scale(0.8);}60%{opacity:1;transform:scale(1.05);}100%{transform:scale(1);}}
+@keyframes shake{0%{transform:scale(1) translateX(0);}25%{transform:scale(1.05) translateX(-5px);}50%{transform:scale(1.05) translateX(5px);}75%{transform:scale(1.05) translateX(-5px);}100%{transform:scale(1) translateX(0);}}
+
+/* Responsive */
+@media(max-width:1100px){.event-container{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:768px){
+.menu-toggle{display:block;}
+.page-title h1{font-size:28px;}
+.event-container{grid-template-columns:repeat(2,1fr);}
+.event-card:hover{transform:rotateY(3deg) rotateX(2deg) translateY(-5px);}
+}
+@media(max-width:480px){
+.event-container{grid-template-columns:1fr;max-width:350px;margin:auto;}
+.page-title h1{font-size:24px;}
+.modal-content{width:90%;padding:10px;}
+.modal-content .btn{width:100%;margin:5px 0;}
+
+.coord-card{
+  background:#1a1a1a;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+
+.coord-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:8px;
+  color:#ccc;
+}
+
+.wa-btn{
+  background:#25D366;
+  color:#000;
+  padding:6px 10px;
+  border-radius:50%;
+  font-size:18px;
+  transition:0.3s;
+}
+
+.wa-btn:hover{
+  transform:scale(1.2);
+  box-shadow:0 0 15px #25D366;
+}
+}
+@keyframes heartbeat{
+  0%{transform:scale(1);}
+  25%{transform:scale(1.08);}
+  50%{transform:scale(1);}
+  75%{transform:scale(1.08);}
+  100%{transform:scale(1);}
+}
+
+.btn{
+  animation:heartbeat 1.8s infinite;
+}
+.menu button{
+  margin-left:8px;
+}
+/* ================= HELP POPUP ================= */
+.help-btn{
+  background: rgba(255,255,255,0.08);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.15);
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:500;
+  backdrop-filter: blur(6px);
+  transition:0.3s ease;
+}
+
+.help-btn:hover{
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+
+.help-content{
+  background:#111;
+  padding:15px;
+  border-radius:12px;
+  width:95%;
+  max-width:420px;
+  max-height:85vh;
+  overflow-y:auto;   /* ✅ HELP SCROLL */
+}
+.help-btn{
+  background: transparent;
+  color:#ddd;
+  border:1px solid rgba(255,255,255,0.2);
+  padding:5px 12px;
+  border-radius:8px;          /* ❌ pill shape remove */
+  font-size:12px;             /* 👈 smaller than logo */
+  font-weight:500;
+  letter-spacing:0.5px;
+  box-shadow:none;            /* ❌ glow remove */
+  transition:0.25s ease;
+}
+
+.help-btn:hover{
+  background: rgba(255,255,255,0.1);
+  color:#fff;
+}
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  justify-content:center;
+  align-items:center;
+  z-index:20;
+}
+
+.modal-content{
+  background:#111;
+  padding:15px;
+  border-radius:12px;
+  max-width:420px;
+  width:95%;
+  max-height:85vh;        /* ⭐ IMPORTANT */
+  overflow-y:auto;        /* ⭐ SCROLL ENABLE */
+}
+/* ===== GLASSY EVENT CARD ===== */
+.event-card{
+  background: rgba(255,255,255,0.12);   /* glass base */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 16px;
+  box-shadow:
+    0 8px 30px rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+/* remove inner black layer */
+.event-details{
+  background: transparent;
+}
+
+/* title & text pop better on glass */
+.event-title{
+  color:#fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.event-description{
+  color:#e0e0e0;
+}
+
+/* hover = more shine */
+.event-card:hover{
+  background: rgba(255,255,255,0.18);
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.45),
+    0 0 25px rgba(255,255,255,0.15);
+}
+/* ===== GLASS BACKDROP ===== */
+.modal{
+  background: rgba(0,0,0,0.55);   /* lighter than black */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ===== GLASS POPUP CARD ===== */
+.modal-content{
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
+
+  color: #fff;
+}
+
+/* images inside popup */
+.modal-content img{
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* close (X) button */
+.close{
+  color:#fff;
+  text-shadow:0 0 10px rgba(255,255,255,0.6);
+}
+
+/* popup buttons */
+.modal-content .btn{
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.modal-content .btn:hover{
+  background: rgba(255,255,255,0.25);
+}
+/* ===== CLOSED EVENT REGISTER BUTTON ===== */
+#registerBtn[href="closed"]{
+  pointer-events: none;
+  background: rgba(255,60,60,0.15);
+  border: 1px solid rgba(255,60,60,0.4);
+  color: transparent;
+  position: relative;
+  box-shadow: none;
+}
+
+/* CLOSED TEXT */
+#registerBtn[href="closed"]::after{
+  content: "🚫 REGISTRATION CLOSED";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ff6b6b;
+  font-size: 14px;
+  font-weight: 600;
+
+  background: rgba(255,60,60,0.18);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+}
+h2.title{
+  font-size:36px;
+  font-weight:900;
+  text-align:center;
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+  animation: oakmontLoop 4s infinite;
+
+  text-shadow:
+    -3px -3px 0 #000,
+     3px -3px 0 #000,
+    -3px  3px 0 #000,
+     3px  3px 0 #000,
+     0  6px 0 rgba(0,0,0,0.6);
+}
+@keyframes oakmontLoop{
+  0%{
+    color:#ffeb3b;   /* yellow */
+  }
+  33%{
+    color:#ff9800;   /* orange */
+  }
+  66%{
+    color:#e53935;   /* red */
+  }
+  100%{
+    color:#ffeb3b;   /* back to yellow */
+  }
+}
+.nav-buttons{
+  margin-left: auto;   /* 🔥 pushes buttons to right */
+  display: flex;
+  gap: 10px;
+}
+.help-btn{
+  text-decoration: none;   /* underline remove */
+}
+.event-card.closed{
+  filter: grayscale(100%);
+  opacity: 0.75;
+  pointer-events: none;
+  position: relative;
+}
+.event-card.closed{
+  position: relative;
+  overflow: hidden;   /* 🔥 card-ku ullaye lock */
+}
+
+.event-card.closed::before{
+  content:"CLOSED";
+  position:absolute;
+  top:14px;
+  right:-32px;
+
+  width:140px;
+  text-align:center;
+
+  background:#b00000;
+  color:#fff;
+  padding:6px 0;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:0.5px;
+
+  transform:rotate(45deg);
+  box-shadow:0 3px 8px rgba(0,0,0,0.6);
+  z-index:10;
+}
+
+
+
+#miniTitle{
+  position:fixed;
+  top:70px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,0.7);
+  color:#ffeb3b;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:1px;
+  opacity:0;
+  transition:0.3s ease;
+  z-index:999;
+}
+#miniTitle.show{
+  opacity:1;
+}
+#backToTop{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  width:45px;
+  height:45px;
+  background:#ffeb3b;
+  color:#000;
+  font-size:22px;
+  font-weight:900;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 0 15px rgba(255,235,59,0.8);
+  opacity:0;
+  transition:0.3s;
+  z-index:999;
+}
+#backToTop.show{opacity:1;}
+
+.event-prize{
+  margin-top:6px;
+  font-size:14px;
+  font-weight:700;
+  color:#ffeb3b;
+  text-shadow:0 0 6px rgba(255,235,59,0.7);
+}
+.cash-line{
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  font-size: 13px;
+}
+.event-count-badge{
+  display: inline-block;
+  margin: 12px auto 18px;
+  padding: 6px 16px;
+
+  background: #000;
+  color: #ffd700;
+
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 20px;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+.logo { max-width: 80%; animation: glow 3s infinite alternate, zoom 6s ease-in-out; }
+
+
+@keyframes zoom { 0% { transform: scale(0.8) rotate(-5deg); } 50% { transform: scale(1.1) rotate(5deg); } 100% { transform: scale(1) rotate(0); } }
+</style>
+</head>
+<body>
+
+
+<nav>
+  <div class="menu">
+
+    <div class="logo">
+      <img src="logo.png" alt="Negotium 26 Logo">
+    </div>
+
+    <div class="nav-buttons">
+      <a href="index .html" class="help-btn">HOME</a>
+      <button class="help-btn" onclick="openCoordinator()">HELP</button>
+    </div>
+
+  </div>
+</nav>
+<div class="event-count-badge">
+  🟢 <span id="liveCount">0</span> Live |
+  🔴 <span id="closedCount">0</span> Closed
+</div>
+<div id="miniTitle">NEGOTIUM ’26 </div>
+
+<div class="page-title">
+<h2 class="title">Our Events</h2>
+<p>Click on any event to view rules & register</p>
+<p>Scroll The screen To See The Events</p>
+</div>
+
+<!-- ================= Title ================= -->
+<div class="event-container">
+
+<div class="event-card " onclick="openRules('/Business Quiz RR.png','https://docs.google.com/forms/d/e/1FAIpQLSfOanAu5npIZl2oRn__zYtCldAMjZCmiE0YSCc6yO4uJGDisg/viewform?usp=dialog')">
+ <div class="event-image-container">
+  <img src="Title event cover page.png" class="event-image">
+ </div>
+ <div class="event-details">
+  <h2 class="event-title">TITLE</h2>
+  <p class="event-description">You own the stage</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+
+<!-- ================= debate ================= -->
+
+<div class="event-card " onclick="openRules('/Business Plan cover.png','https://docs.google.com/forms/d/e/1FAIpQLSd8R0hud1WB1mK7UbruS7EIGIA0giMt_-lA54fCBM03K7ffGw/viewform?usp=dialog')">
+ <div class="event-image-container">
+  <img src="Potpourri event cover page.png" class="event-image">
+ </div>
+ <div class="event-details">
+  <h2 class="event-title">DEBATE</h2>
+  <p class="event-description">Words are your weapon</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+ <!-- ================= quiz ================= -->
+<div class="event-card " onclick="openRules('/Business Quiz RR.png','https://docs.google.com/forms/d/e/1FAIpQLSfYomSxWH370CTwWX_kIe-JC1qFggZg0TocA9Jg9iH_JG44CA/viewform?usp=dialog')">
+ <div class="event-image-container">
+  <img src="Title event cover page.png" class="event-image">
+ </div>
+ 
+ <div class="event-details">
+  <h2 class="event-title">BUSINESS QUIZ</h2>
+  <p class="event-description">Brain power mode on</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+
+ <!-- ===business plan==== -->
+ 
+<div class="event-card " onclick="openRules('title.jpg','https://docs.google.com/forms/d/e/1FAIpQLSfk4AQ0233ngDVfSA1gzsaLy5CGyZAGJURDnrPOMge16bW4fQ/viewform?usp=dialog')">
+ <div class="event-image-container">
+  <img src="/Business Plan cover.png" class="event-image">
+ </div>
+ 
+ <div class="event-details">
+  <h2 class="event-title">BUSINESS PLAN</h2>
+  <p class="event-description">CEO instincts activated</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+ <!-- ================= shipwreck ================= -->
+<div class="event-card" onclick="openRules('title.jpg','https://docs.google.com/forms/d/e/1FAIpQLSc-ianpLuEJSApyhHopPbet1txL7rH2Tgnf_nVqVE_Qqgexaw/viewform?usp=dialog')">
+ <div class="event-image-container">
+  <img src="Title event cover page.png" class="event-image">
+ </div>
+
+ <div class="event-details">
+  <h2 class="event-title">SHIPWRECK</h2>
+  <p class="event-description">Talk your way to victory</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+ <!-- ================= ipl ================= -->
+<div class="event-card" onclick="openRules('title.jpg','https://docs.google.com/forms/d/e/1FAIpQLSdsU4yp6FEaLBCiIVuaMosZolwmK0fIgpTgv1a6eyFRjr_5lg/viewform?usp=dialog')">
+ <div class="event-image-container">
+  <img src="Title event cover page.png" class="event-image">
+ </div>
+
+ <div class="event-details">
+  <h2 class="event-title">IPL AUCTION</h2>
+  <p class="event-description">Strategic mastermind</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+
+ <!-- ================= potpourri ================= -->
+<div class="event-card" onclick="openRules('title.jpg','https://docs.google.com/forms/d/e/1FAIpQLScpN4kGOK2IWKcyIcgIeLJ2r0dI2n15iCw_Nr5LFIz3EozYkg/viewform?usp=dialog')">
+ <div class="event-image-container">
+  <img src="Title event cover page.png" class="event-image">
+ </div>
+
+ <div class="event-details">
+  <h2 class="event-title">POTPOURRI</h2>
+  <p class="event-description">All-rounder vibes</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+
+ <!-- ================= poster making ================= -->
+<div class="event-card" onclick="openRules('title.jpg','https://docs.google.com/forms/d/e/1FAIpQLSeUv5Dp1AIbw5mrpqO14ezqbjqNgIXy4B3tqUExZWe7-sw3oA/viewform?usp=dialog')">
+ <div class="event-image-container">
+  <img src="Title event cover page.png" class="event-image">
+ </div>
+
+ <div class="event-details">
+  <h2 class="event-title">POSTER MAKING</h2>
+  <p class="event-description">Visual storyteller</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+ <!-- ================= reels making ================= -->
+<div class="event-card" onclick="openRules('title.jpg','https://docs.google.com/forms/d/e/1FAIpQLSdW988SkGwkew2aDldFFqELZESJXH55iBCpivlW3y5y6CYIpw/viewform?usp=dialog')">
+ <div class="event-image-container">
+  <img src="Title event cover page.png" class="event-image">
+ </div>
+
+ <div class="event-details">
+  <h2 class="event-title">REELS MAKING</h2>
+  <p class="event-description">Viral potential</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+ <!-- ================= photography================= -->
+<div class="event-card" onclick="openRules('title.jpg','https://docs.google.com/forms/d/e/1FAIpQLSdDl0mu0mql4_Kt_ZO12mgj4Usbgz_LGxzYfavEORnB0_lazA/viewform?usp=dialog')">
+ <div class="event-image-container">
+  <img src="Title event cover page.png" class="event-image">
+ </div>
+
+ <div class="event-details">
+  <h2 class="event-title">PHOTOGRAPHY</h2>
+  <p class="event-description">You see the unseen</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+ <!-- ================= short flim================= -->
+<div class="event-card" onclick="openRules('title.jpg','https://forms.gle/KTbyhri5SJwYkbqC8')">
+ <div class="event-image-container">
+  <img src="Title event cover page.png" class="event-image">
+ </div>
+
+ <div class="event-details">
+  <h2 class="event-title">SHORT FLIM</h2>
+  <p class="event-description">Storytelling blood</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+<!-- ================= channel surfing================= -->
+
+
+<div class="event-card " onclick="openRules('/Business Quiz RR.png','https://docs.google.com/forms/d/e/1FAIpQLSetJG3JojIBsRHTm8KrgOHsKK3ppkPHvbdzaPWDNHQoOebbNw/viewform?usp=dialog')">
+ <div class="event-image-container">
+  <img src="Title event cover page.png" class="event-image">
+ </div>
+ <div class="event-details">
+  <h2 class="event-title">CHANNEL SURFING</h2>
+  <p class="event-description">You own the stage</p>
+  <p class="cash-line">
+  🥇 ₹5,000 • 🥈 ₹3,000 • 🥉 ₹1,000
+</p>
+ </div>
+</div>
+</div>
+
+<footer class="footer">
+ <div class="footer-title">Follow Us</div>
+ <div class="social-icons">
+  <a href="https://www.instagram.com/negotium.26?igsh=cXl3NHczd21neXZu"><i class="fab fa-instagram"></i></a>
+ </div>
+ <p class="instagram-handle">@Negotium'26</p>
+</footer>
+<div id="coordinatorModal" class="modal">
+ <div class="modal-content">
+  <span class="close" onclick="closeCoordinator()">&times;</span>
+
+  <h2 style="margin-bottom:15px;">Help & Coordinators</h2>
+
+  <!-- TITLE EVENT -->
+  <div class="coord-card">
+    <h3>TITLE</h3>
+
+    <div class="coord-row">
+      <span>Vaibhav</span>
+      <a href="https://wa.me/918825615702?text=Hi%20I%20need%20help%20for%20TITLE%20event"
+         target="_blank" class="wa-btn">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+   
+  </div>
+
+  <!-- DEBATE EVENT -->
+  <div class="coord-card">
+    <h3>🗣️ DEBATE </h3>
+
+    <div class="coord-row">
+      <span>Barath</span>
+      <a href="https://wa.me/916379483379?text=Hi%20I%20need%20help%20for%20DEBATE%20event"
+         target="_blank" class="wa-btn">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+</div>
+
+  <!-- BUSINESS PLAN EVENT -->
+  <div class="coord-card">
+    <h3>BUSINESS PLAN</h3>
+
+    <div class="coord-row">
+      <span>Abhijith</span>
+      <a href="https://wa.me/919345625509?text=Hi%20I%20need%20help%20for%20BUSINESS PLAN%20event"
+         target="_blank" class="wa-btn">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+  </div>
+  <!-- BUSINESS QUIZ EVENT -->
+  <div class="coord-card">
+    <h3>BUSINESS QUIZ</h3>
+
+    <div class="coord-row">
+      <span>Vruthika</span>
+      <a href="https://wa.me/919840090428?text=Hi%20I%20need%20help%20for%20Business quiz%20event"
+         target="_blank" class="wa-btn">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+  </div>
+  
+  <!-- SHIPWRECK EVENT -->
+  <div class="coord-card">
+    <h3>SHIPWRECK</h3>
+
+    <div class="coord-row">
+      <span>Ritvik</span>
+      <a href="https://wa.me/919840182438?text=Hi%20I%20need%20help%20for%20shipwreck%20event"
+         target="_blank" class="wa-btn">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+  </div>
+  
+  <!-- ipl auction EVENT -->
+  <div class="coord-card">
+    <h3>IPL AUCTION</h3>
+
+    <div class="coord-row">
+      <span>Yugesh</span>
+      <a href="https://wa.me/919940454338?text=Hi%20I%20need%20help%20for%20IPL Auction%20event"
+         target="_blank" class="wa-btn">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+  </div>
+  
+
+  
+  <!-- POTPOURRI EVENT -->
+  <div class="coord-card">
+    <h3>POTPOURRI</h3>
+
+    <div class="coord-row">
+      <span>Aadit</span>
+      <a href="https://wa.me/919840440137?text=Hi%20I%20need%20help%20for%20Potpourri%20event"
+         target="_blank" class="wa-btn">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+  </div>
+  
+
+  
+  <!-- Poster making EVENT -->
+  <div class="coord-card">
+    <h3>POSTER MAKING</h3>
+
+    <div class="coord-row">
+      <span>Ritvik</span>
+      <a href="https://wa.me/919840182438?text=Hi%20I%20need%20help%20for%20poster making%20event"
+         target="_blank" class="wa-btn">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+  </div>
+  
+  <!-- reel making EVENT -->
+  <div class="coord-card">
+    <h3>REELS MAKING</h3>
+    <div class="coord-row">
+      <span>Madhavan</span>
+      <a href="https://wa.me/918778672237?text=Hi%20I%20need%20help%20for%20reels making%20event"
+         target="_blank" class="wa-btn">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+  </div>
+  
+    <!-- photography EVENT -->
+    <div class="coord-card">
+    <h3>PHOTOGRAPHY</h3>
+    <div class="coord-row">
+      <span>Divesh</span>
+      <a href="https://wa.me/919551494623?text=Hi%20I%20need%20help%20for%20photography%20event"
+         target="_blank" class="wa-btn">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+  </div>
+  
+
+    <!-- channel surfing-->
+      <div class="coord-card">
+    <h3>CHANNEL SURFING</h3>
+    <div class="coord-row">
+      <span>SHALENI</span>
+      <a href="https://wa.me/919943763726?text=Hi%20I%20need%20help%20for%20short flim%20event"
+         target="_blank" class="wa-btn">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+  </div>
+   </div>
+</div>
+<div id="rulesModal" class="modal">
+ <div class="modal-content">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img id="rulesImage">
+  <div id="paymentSection" style="display:none;">
+    <img src="qr.jpg" style="width:75%;border-radius:10px;">
+    <p style="font-size:14px;color:#ccc;margin-top:10px;">💳 Scan QR & Pay<br>📌 Take Screenshot<br>🧾 Upload in Google Form</p>
+  </div>
+
+  <div style="margin-top:10px;">
+     <button id="nextBtn" class="btn" onclick="showPayment()">Next</button>
+     <button id="backBtn" class="btn" onclick="showRules()" style="display:none;background:#444;">Back</button>
+     <a id="registerBtn" class="btn" target="_blank" style="display:none;">Register</a>
+  </div>
+  
+
+ </div>
+</div>
+<div id="backToTop">↑</div>
+
+<script>
+/* Scroll Reveal */
+const cards=document.querySelectorAll('.event-card');
+window.addEventListener('scroll',()=>{
+  const trigger=window.innerHeight*0.9;
+  let delay=0;
+  cards.forEach(card=>{
+    if(card.getBoundingClientRect().top<trigger){
+      setTimeout(()=>card.classList.add('visible'),delay);
+      delay+=50;
+    }
+  });
+});
+
+function openRules(img,link){
+ document.getElementById('rulesImage').src=img;
+ document.getElementById('registerBtn').href=link;
+ showRules();
+ document.getElementById('rulesModal').style.display="flex";
+}
+function showPayment(){
+ document.getElementById("rulesImage").style.display="none";
+ document.getElementById("paymentSection").style.display="block";
+ document.getElementById("nextBtn").style.display="none";
+ document.getElementById("backBtn").style.display="inline-block";
+ document.getElementById("registerBtn").style.display="inline-block";
+}
+function showRules(){
+ document.getElementById("rulesImage").style.display="block";
+ document.getElementById("paymentSection").style.display="none";
+ document.getElementById("nextBtn").style.display="inline-block";
+ document.getElementById("backBtn").style.display="none";
+ document.getElementById("registerBtn").style.display="none";
+}
+function closeModal(){document.getElementById('rulesModal').style.display="none";}
+window.onclick=e=>{if(e.target==document.getElementById('rulesModal')) closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==="Escape") closeModal();});
+
+
+function hideInfoTexts(){
+  infoTexts.forEach(t => t.style.display = "none");
+  window.removeEventListener('touchstart', hideInfoTexts);
+  window.removeEventListener('click', hideInfoTexts);
+  window.removeEventListener('scroll', hideInfoTexts);
+}
+
+window.addEventListener('touchstart', hideInfoTexts);
+window.addEventListener('click', hideInfoTexts);
+window.addEventListener('scroll', hideInfoTexts);
+function openCoordinator(){
+  document.getElementById("coordinatorModal").style.display="flex";
+}
+function closeCoordinator(){
+  document.getElementById("coordinatorModal").style.display="none";
+}
+
+  const pageTexts = document.querySelectorAll('.page-title p');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {   // scroll start aana udane
+      pageTexts.forEach(p => p.style.display = 'none');
+    }
+  });
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('miniTitle')
+    .classList.toggle('show',window.scrollY>120);
+});
+
+const topBtn=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{
+  topBtn.classList.toggle('show',window.scrollY>300);
+});
+topBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+  const totalEvents = document.querySelectorAll('.event-card').length;
+  const closedEvents = document.querySelectorAll('.event-card.closed').length;
+  const liveEvents = totalEvents - closedEvents;
+
+  document.getElementById('liveCount').innerText = liveEvents;
+  document.getElementById('closedCount').innerText = closedEvents;
+
+  const container = document.querySelector('.event-container');
+
+  const closedCards = [...container.querySelectorAll('.event-card.closed')];
+  const openCards   = [...container.querySelectorAll('.event-card:not(.closed)')];
+
+  // Clear container
+  container.innerHTML = '';
+
+  // First add LIVE events
+  openCards.forEach(card => container.appendChild(card));
+
+  // Then add CLOSED events at last
+  closedCards.forEach(card => container.appendChild(card));
+
+const nav = document.querySelector("nav");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 40) {
+    nav.classList.add("shrink");
+  } else {
+    nav.classList.remove("shrink");
+  }
+});
+
+</script>
+
+</body>
+</html>

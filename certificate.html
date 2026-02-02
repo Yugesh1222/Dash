@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Certificate Download</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#eaeaea;
+}
+
+.card{
+  width:95%;
+  max-width:480px;
+  background:#121a22;
+  padding:28px;
+  border-radius:18px;
+  box-shadow:0 15px 40px rgba(0,0,0,.6);
+  text-align:center;
+}
+
+.back-btn{
+  display:inline-block;
+  margin-bottom:12px;
+  color:#3b82f6;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:600;
+}
+
+h1{
+  font-size:26px;
+  margin-bottom:6px;
+  color:#e8f1f8;
+}
+
+p{
+  font-size:14px;
+  color:#9fb3c8;
+  margin-bottom:16px;
+}
+
+/* EVENTS */
+.events{
+  text-align:left;
+  max-height:210px;
+  overflow-y:auto;
+  margin-bottom:16px;
+}
+
+.events::-webkit-scrollbar{
+  width:6px;
+}
+.events::-webkit-scrollbar-thumb{
+  background:#3b82f6;
+  border-radius:10px;
+}
+
+.event-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
+  font-size:14px;
+}
+
+.event-item input{
+  accent-color:#3b82f6;
+}
+
+/* INPUTS */
+input[type="text"],
+input[type="tel"]{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:1px solid #253341;
+  background:#0f1720;
+  color:#eaeaea;
+  font-size:14px;
+}
+
+input::placeholder{
+  color:#6b7f94;
+}
+
+input:focus{
+  outline:none;
+  border-color:#3b82f6;
+  box-shadow:0 0 0 2px rgba(59,130,246,.25);
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+  background:#3b82f6;
+  color:#fff;
+  transition:.3s;
+}
+
+button:hover{
+  background:#2563eb;
+  transform:translateY(-1px);
+}
+
+/* STATUS */
+.error{
+  color:#f87171;
+  margin-top:10px;
+  display:none;
+  font-size:13px;
+}
+
+.success{
+  color:#4ade80;
+  margin-top:10px;
+  display:none;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <a href="index.html" class="back-btn">← Back</a>
+
+  <h1>Download Certificate</h1>
+  <p>Select Event & Enter Details</p>
+
+  <div class="events">
+    <label class="event-item"><input type="radio" name="event" value="title"> Title</label>
+    <label class="event-item"><input type="radio" name="event" value="debate"> Debate</label>
+    <label class="event-item"><input type="radio" name="event" value="businessplan"> Business Plan</label>
+    <label class="event-item"><input type="radio" name="event" value="businessquiz"> Business Quiz</label>
+    <label class="event-item"><input type="radio" name="event" value="shipwreck"> Shipwreck</label>
+    <label class="event-item"><input type="radio" name="event" value="ipl"> IPL Auction</label>
+    <label class="event-item"><input type="radio" name="event" value="adzap"> Adzap</label>
+    <label class="event-item"><input type="radio" name="event" value="potpourri"> Potpourri</label>
+    <label class="event-item"><input type="radio" name="event" value="corporatewalk"> Corporate Walk</label>
+    <label class="event-item"><input type="radio" name="event" value="poster"> Poster Making</label>
+    <label class="event-item"><input type="radio" name="event" value="reel"> Reel Making</label>
+    <label class="event-item"><input type="radio" name="event" value="photography"> Photography</label>
+    <label class="event-item"><input type="radio" name="event" value="shortfilm"> Short Film</label>
+  </div>
+
+  <input type="text" id="name" placeholder="Enter Your Name">
+  <input type="tel" id="mobile" placeholder="Enter Mobile Number">
+
+  <button onclick="verify()">Download Certificate</button>
+
+  <div class="error" id="errorMsg">❌ Details not found</div>
+  <div class="success" id="successMsg">✅ Certificate Downloading...</div>
+</div>
+
+<script>
+const certificates = {
+  title: {
+    img: "certificate.jpg",
+    y: 235,
+    participants: [
+      { name: "Yugesh", mobile: "9940454338" },
+      { name: "Anu Priya", mobile: "9123456789" }
+    ]
+  },
+  debate: { img: "certificates/debate.png", y: 235, participants: [] },
+  businessplan: { img: "certificates/businessplan.png", y: 235, participants: [] },
+  businessquiz: { img: "certificates/businessquiz.png", y: 235, participants: [] },
+  shipwreck: { img: "certificates/shipwreck.png", y: 235, participants: [] },
+  ipl: { img: "certificates/ipl.png", y: 235, participants: [] },
+  adzap: { img: "certificates/adzap.png", y: 235, participants: [] },
+  potpourri: { img: "certificates/potpourri.png", y: 235, participants: [] },
+  corporatewalk: { img: "certificates/corporatewalk.png", y: 235, participants: [] },
+  poster: { img: "certificates/poster.png", y: 235, participants: [] },
+  reel: { img: "certificates/reel.png", y: 235, participants: [] },
+  photography: { img: "certificates/photography.png", y: 235, participants: [] },
+  shortfilm: { img: "certificates/shortfilm.png", y: 235, participants: [] }
+};
+
+function verify(){
+  const eventRadio = document.querySelector('input[name="event"]:checked');
+  const name = document.getElementById("name").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
+
+  if(!eventRadio || !name || !mobile){
+    showError();
+    return;
+  }
+
+  const eventKey = eventRadio.value;
+  const data = certificates[eventKey];
+
+  const found = data.participants.find(p =>
+    p.name.toLowerCase() === name.toLowerCase() &&
+    p.mobile === mobile
+  );
+
+  if(found){
+    showSuccess();
+    generateCertificate(found.name, eventKey);
+  }else{
+    showError();
+  }
+}
+
+function showError(){
+  document.getElementById("errorMsg").style.display="block";
+  document.getElementById("successMsg").style.display="none";
+}
+
+function showSuccess(){
+  document.getElementById("errorMsg").style.display="none";
+  document.getElementById("successMsg").style.display="block";
+}
+
+function generateCertificate(username, eventKey){
+  const cert = certificates[eventKey];
+  username = username.replace(/\b\w/g, c => c.toUpperCase());
+
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  const img = new Image();
+  img.src = cert.img;
+
+  img.onload = () => {
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#000";
+    ctx.font = "bold 36px Arial";
+    ctx.fillText(username, canvas.width / 2, cert.y);
+
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = `${username}_${eventKey}_Certificate.png`;
+    link.click();
+  };
+}
+</script>
+
+</body>
+</html>

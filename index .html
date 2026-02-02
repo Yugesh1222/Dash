@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LucaFama</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== NAV SHRINK ON SCROLL ===== */
+nav{
+  transition: all 0.3s ease;
+}
+
+nav.shrink{
+  padding: 2px 0;              /* height kammi */
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(14px);
+}
+
+nav.shrink .logo img{
+  height: 36px;                /* logo small */
+}
+/* ===== NAVBAR RESET ===== */
+nav{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: linear-gradient(
+    90deg,
+    #1b2230,
+    #232a3b
+  );/* 🔥 dark navy */
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+
+  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+  padding: 6px 0;
+}
+
+/* NAV CONTENT */
+nav .menu{
+  max-width: 1250px;
+  height: 100%;                 /* 🔥 IMPORTANT */
+  margin: auto;
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;          /* ✅ vertical center */
+  justify-content: space-between;
+}
+.logo { max-width: 80%; animation: glow 3s infinite alternate, zoom 6s ease-in-out; }
+
+
+@keyframes zoom { 0% { transform: scale(0.8) rotate(-5deg); } 50% { transform: scale(1.1) rotate(5deg); } 100% { transform: scale(1) rotate(0); } }
+/* LOGO BASE */
+.menu .logo img{
+  height: 46px;
+  width: auto;
+  display: block;
+
+  
+
+  animation: logoFloat 3s ease-in-out infinite;
+}
+/* SHARE BUTTON */
+.help-btn{
+  height: 34px;                 /* ✅ same line height */
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  background: rgba(255,255,255,0.22);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 10px;
+
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+
+  line-height: 1;               /* 🔥 BIG FIX */
+}
+
+
+/* SHARE BUTTON */
+.help-btn{
+  display:flex;
+  align-items:center;
+  line-height:1;
+}
+
+.help-btn{
+  margin: 0;                 /* no outside push */
+  align-self: center;
+}
+  
+/* ---------------- HERO ---------------- */
+html, body{
+  height:100%;
+}
+
+body{
+  margin:0;
+  background: 
+    
+    url("/bg3.jpg") center center / cover no-repeat fixed;
+}
+
+.img{
+  position:relative;
+  width:100%;
+  min-height:auto;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+
+  padding-top:50px;
+  padding-bottom:90px; /* register button space */
+}
+
+/* iPhone fallback */
+@supports (-webkit-touch-callout: none) {
+ .img{
+   background-attachment:scroll;
+   background-position:center fixed;
+ }
+}
+
+/* ------------ COUNTDOWN CARD ------------- */
+
+.countdown-card{
+  background: rgba(255,255,255,0.35);   /* MORE transparent */
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  width: 90%;
+  max-width: 380px;
+  margin: 0 auto 20px auto;
+  padding: 18px 14px;
+  border-radius: 22px;
+  text-align: center;
+
+  /* glass border + depth */
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.45),
+    inset 0 1px 1px rgba(255,255,255,0.5);
+}
+.timer{
+  color:#000;
+}
+
+.timer span{
+  color:#ff2d2d;
+  text-shadow:0 2px 8px rgba(0,0,0,0.35);
+}
+
+@keyframes floatIn{
+  0%{opacity:0; transform: translateY(40px) scale(.95);}
+  100%{opacity:1; transform: translateY(0) scale(1);}
+}
+
+.countdown-card h2{
+  font-size: 20px;
+  font-weight:800;
+  margin-bottom:6px;
+}
+
+.timer{
+  font-size: 18px;
+  font-weight: 700;
+  color:#000;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+.timer span{
+  color:#e60023;
+  animation:pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes pulse{
+  0%{ transform:scale(1); }
+  50%{ transform:scale(1.2); }
+  100%{ transform:scale(1); }
+}
+
+/* ----------- TEXT ---------- */
+h2.title{
+  font-size:36px;
+  font-weight:900;
+  text-align:center;
+
+  background: linear-gradient(
+    90deg,
+    #1e90ff,   /* blue */
+    #7b2ff7,   /* purple */
+    #ff4ecd,   /* pink */
+    #1ee3cf    /* cyan */
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+h2.title{
+  background-size: 300% 300%;
+  animation: gradientMove 6s ease infinite;
+}
+.img{
+  padding-top: 50px;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+.title{
+  margin-top: 0px;
+}
+p.sub{
+  font-size:20px;
+  color:#bfbfbf;    /* ash color */
+  text-align:center;
+  margin-top:10px;
+}
+
+/* -------- BUTTON ---------- */
+button{
+  margin-top:25px;
+  padding:12px 35px;
+  border-radius:12px;
+  border:none;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  background:white;
+  box-shadow:0 5px 20px rgba(0,0,0,0.4);
+}
+button{
+  position:relative;
+  overflow:hidden;
+}
+
+button:hover{
+  box-shadow:0 0 25px #fff;
+  transform:scale(1.08);
+}
+
+/* ---------------- FOOTER ---------------- */
+footer{
+  position: relative;
+  width:100%;
+  background:#000;
+  color:white;
+  text-align:center;
+  padding:12px;
+  font-size:13px;
+  margin-top:40px;
+}
+      .center .btns{
+        margin-top: 30px;
+      }
+      .center .btns button{
+        height: 55px;
+        width: 170px;
+        border-radius: 5px;
+        border: none;
+        margin: 0 10px;
+        border: 2px solid white;
+        font-size: 20px;
+        font-weight: 500;
+        padding: 0 10px;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+      .center .btns button:first-child{
+        color: #fff;
+        background: none;
+      }
+      .btns button:first-child:hover{
+        background: white;
+        color: black;
+      }
+      .center .btns button:last-child{
+        background: white;
+        color: black;
+      }
+      .center .btns button:last-child:hover{
+        background: transparent;
+        color: white;
+      }
+      .center .btns button a {
+        color: inherit;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 51px;
+      }
+     
+/* College Header */
+      .college-header {
+        width: 100%;
+        background: #fff;
+        text-align: center;
+        border-bottom: 2px solid #ddd;
+      }
+      .college-header img {
+        max-width: 100%;
+        height: auto;
+      }
+      
+}
+/* ORDER FIX FOR MOBILE & DESKTOP */
+
+
+.title{
+  order:1;
+}
+
+
+
+/* SHIFT EXISTING ITEMS */
+.countdown-card{
+  order:2;
+}
+.live-counter{
+  order:3;
+}
+/* TEASER ORDER */
+.teaser-container{
+  order:4;
+}
+.event-glass{
+  order:5;
+}
+
+.sub{
+  order:7;
+}
+
+.img button{
+  order:9;
+}
+.fate-wrap{
+  order:6;                 /* where Fate block should appear */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+#fateResult{
+  margin-top:12px;
+}
+
+
+/*BUTTON EFFECT */
+.img button{
+  position:relative;
+  overflow:hidden;
+}
+
+.img button::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  animation: shine 2.5s infinite;
+}
+
+@keyframes shine{
+  0%{ left:-100%; }
+  60%{ left:100%; }
+  100%{ left:100%; }
+}
+
+.teaser-container{
+  margin:15px auto;
+}
+
+@keyframes heartbeat{
+  0%{
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255,0,0,0.6);
+  }
+  14%{
+    transform: scale(1.15);
+    box-shadow: 0 0 20px rgba(255,0,0,0.6);
+  }
+  28%{
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255,0,0,0);
+  }
+  42%{
+    transform: scale(1.12);
+    box-shadow: 0 0 25px rgba(255,0,0,0.7);
+  }
+  70%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+.img button a{
+  text-decoration: none;
+  color: #0047ff;   /* blue venumna keep, illena black */
+}
+footer a{
+  color:white;
+  text-decoration:none;
+  display:block;
+}
+.teaser-container{
+  order:2;
+  width:90%;
+  max-width:420px;
+  margin:18px auto;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 12px 35px rgba(0,0,0,0.45);
+}
+
+.teaser-video{
+  width:100%;
+  height:auto;
+  display:block;
+  background:#000;
+}
+.teaser-container{
+  margin-top:15px;
+}
+/* ===== SPLIT INTRO ===== */
+#intro{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  transition:opacity 1s ease, visibility 1s ease;
+}
+#intro{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  z-index:9999;
+}
+
+/* Header ABOVE split image */
+#collegeHeader{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:10001;
+  background:#fff;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Split pieces slightly below header */
+.logo-wrap{
+  position:relative;
+  z-index:10000;
+}
+#collegeHeader.hide{
+  opacity:0;
+  transform: translateY(-20px);
+}
+#intro.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+/* LOGO SIZE CONTROL */
+.logo-wrap{
+  position:relative;
+  width:180px;
+  height:180px;
+}
+
+/* LOGO PIECES */
+.piece{
+  position:absolute;
+  inset:0;
+  background:url("bg2.jpg") center/contain no-repeat;
+  transition:transform 2s cubic-bezier(0.25,1,0.5,1);
+}
+
+/* SPLIT SHAPES */
+.tl{ clip-path: inset(0 50% 50% 0); }
+.tr{ clip-path: inset(0 0 50% 50%); }
+.bl{ clip-path: inset(50% 50% 0 0); }
+.br{ clip-path: inset(50% 0 0 50%); }
+
+/* MOVE TO CORNERS */
+#intro.active .tl{
+  transform:translate(-38vw,-38vh) scale(.7);
+}
+#intro.active .tr{
+  transform:translate(38vw,-38vh) scale(.7);
+}
+#intro.active .bl{
+  transform:translate(-38vw,38vh) scale(.7);
+}
+#intro.active .br{
+  transform:translate(38vw,38vh) scale(.7);
+}
+/* MAIN CONTENT FADE */
+#mainContent{
+  opacity:0;
+  transform: scale(1.02);
+  transition: opacity 1.6s ease, transform 1.6s ease;
+}
+
+#mainContent.show{
+  opacity:1;
+  transform: scale(1);
+}
+#collegeHeader{
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#collegeHeader.hide{
+  opacity:0;
+  transform: translateY(-20px);
+  pointer-events:none;
+}
+#collegeHeader{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  background:#fff;
+  z-index:500;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#collegeHeader.hide{
+  opacity:0;
+  transform: translateY(-20px);
+  pointer-events:none;
+} 
+.event-glass{
+  backdrop-filter: blur(14px);
+  background: rgba(255,255,255,0.12);
+  border-radius: 22px;
+  padding: 22px 20px;
+  width: 88%;
+  max-width: 420px;
+  margin: 0 auto;
+
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.45),
+    inset 0 0 20px rgba(255,255,255,0.08);
+}
+.event-title{
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+
+  background: linear-gradient(90deg,#ff4ecd,#7a5cff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.event-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.event-list li{
+  text-align: center;
+  padding: 10px 0;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #fff;
+  font-weight: 500;
+
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.event-list li{
+  opacity: 0;
+  transform: translateY(10px);
+  animation: reveal 0.6s ease forwards;
+}
+
+.event-list li:nth-child(n){
+  animation-delay: calc(0.08s * var(--i));
+}
+
+@keyframes reveal{
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+.live-counter{
+  margin:14px auto;
+  width:fit-content;
+  padding:10px 18px;
+  border-radius:14px;
+  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.45);
+  box-shadow:0 8px 25px rgba(0,0,0,0.4);
+  font-size:13px;
+  color:#fff;
+}
+
+.live-counter p{
+  margin:4px 0;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  display:inline-block;
+}
+
+.red{
+  background:#ff3b3b;
+  animation:pulseDot 1.2s infinite;
+}
+
+.green{
+  background:#2aff6a;
+}
+
+@keyframes pulseDot{
+  0%{opacity:1;}
+  50%{opacity:0.4;}
+  100%{opacity:1;}
+}
+.fate-btn{
+  margin:20px auto;
+  display:block;
+  padding:12px 30px;
+  font-size:18px;
+  font-weight:700;
+  border-radius:14px;
+  border:none;
+  cursor:pointer;
+  background: linear-gradient(135deg,#7b2ff7,#ff4ecd);
+  color:#fff;
+  box-shadow:0 10px 30px rgba(0,0,0,0.45);
+  transition:0.3s;
+}
+
+.fate-btn:hover{
+  transform:scale(1.08);
+}
+
+#fateResult{
+  text-align:center;
+  margin-top:12px;
+  font-size:18px;
+  font-weight:700;
+  color:#ffd700;
+  min-height:24px;
+}
+/* ===== FATE POPUP GLASS ===== */
+.fate-popup{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  opacity:0;
+  visibility:hidden;
+  transition:0.4s ease;
+}
+.fate-popup{
+  position: fixed;
+  inset: 0;
+  overflow: hidden;   /* 🔒 popup scroll stop */
+}
+
+.fate-popup.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.fate-glass{
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(18px) saturate(160%);
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow:0 20px 45px rgba(0,0,0,0.6);
+  border-radius:22px;
+  padding:30px 26px;
+  text-align:center;
+  width:85%;
+  max-width:340px;
+  animation: popIn 0.5s ease;
+}
+
+@keyframes popIn{
+  from{transform:scale(0.8); opacity:0;}
+  to{transform:scale(1); opacity:1;}
+}
+
+.fate-glass h3{
+  font-size:20px;
+  margin-bottom:14px;
+  background: linear-gradient(90deg,#ff4ecd,#7b2ff7);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+#popupResult{
+  font-size:18px;
+  font-weight:700;
+  color:#fff;
+  min-height:28px;
+  margin-bottom:18px;
+}
+
+
+.close-btn{
+  background: transparent;
+  border:1px solid rgba(255,255,255,0.4);
+  color:#fff;
+  padding:8px 20px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.close-btn:hover{
+  background: rgba(255,255,255,0.2);
+}
+body.no-scroll{
+  overflow: hidden;
+}
+.fee-tag{
+  margin-top:12px;
+  background: rgba(255,255,255,0.12);
+  border-radius:12px;
+  font-weight:700;
+  color:#ffd700;
+  letter-spacing:1px;
+}
+.scroll-surprise{
+  position:fixed;
+  bottom:90px;
+  left:50%;
+  transform:translateX(-50%) scale(0.9);
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.3);
+  padding:12px 22px;
+  border-radius:16px;
+  font-size:14px;
+  color:#fff;
+  opacity:0;
+  pointer-events:none;
+  transition:0.4s ease;
+  z-index:999;
+}
+
+.scroll-surprise.show{
+  opacity:1;
+  transform:translateX(-50%) scale(1);
+}
+.live-time{
+  margin-top:10px;
+  font-size:14px;
+  color:#ccc;
+  text-align:center;
+  letter-spacing:0.5px;
+}
+
+</style>
+<!-- BASIC META -->
+<title>LucaFama 2026 | DG Vaishnav College</title>
+<meta name="description" content="LucaFama Forum 2026 – DG Vaishnav College presents a grand cultural & technical fest. Register now!" />
+
+<!-- OPEN GRAPH (WhatsApp, Insta, FB) -->
+<meta property="og:title" content="🔥 LucaFama 2026 | DG Vaishnav College" />
+<meta property="og:description" content="🎉 Grand Cultural & Technical Forum | Feb 19, 2026 | Register Now!" />
+<meta property="og:image" content="https://lucafama25.github.io/Lucafama-core-/preview.jpg" />
+<meta property="og:url" content="https://lucafama25.github.io/Lucafama-core-/" />
+<meta property="og:type" content="website" />
+
+<!-- TWITTER PREVIEW -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LucaFama 2026">
+<meta name="twitter:description" content="DG Vaishnav College presents LucaFama Forum 2026">
+<meta name="twitter:image" content="https://lucafama25.github.io/Lucafama-core-/bg.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+  <!-- ===== SPLIT INTRO OVERLAY ===== -->
+<div id="intro">
+
+  <!-- COLLEGE HEADER (TOP) -->
+  <div id="collegeHeader" class="college-header">
+    <img src="header_new.jpg" alt="DG Vaishnav College Header">
+  </div>
+
+  <!-- SPLIT LOGO -->
+  <div class="logo-wrap">
+    <div class="piece tl"></div>
+    <div class="piece tr"></div>
+    <div class="piece bl"></div>
+    <div class="piece br"></div>
+  </div>
+
+</div>
+
+<nav>
+  <div class="menu">
+    <div class="logo">
+      
+  <img src="logo.png" alt="Negotium 26 Logo">
+</div>
+<button class="help-btn" onclick="sharePage()">
+  <i class="fa-solid fa-share-nodes"></i>
+  <span>Share</span>
+</button>
+  </div>
+</nav>
+<section class="img" id="mainContent">
+
+
+  <div class="countdown-card">
+    <h2>Event Starts In</h2>
+
+    <div class="timer">
+      <span id="days">00</span> Days
+      <span id="hours">00</span> Hrs
+      <span id="minutes">00</span> Min
+      <span id="seconds">00</span> Sec
+    </div>
+  </div>
+  <p id="liveTime" class="live-time"></p>
+  <div class="live-counter">
+  <p><span class="dot red"></span> <b id="viewCount">240</b> people viewing now</p>
+  <p><span class="dot green"></span> <b id="regCount">50</b> registered today</p>
+</div>
+<div class="event-glass">
+  <h3 class="event-title">EVENT CATEGORIES ✨</h3>
+
+  <ul class="event-list">
+    <li class="fee-tag">🎟️ Registration Fee: ₹100/Per Team</li>
+    <li style="--i:1">Business Plan</li>
+     <li style="--i:2">Business Quiz</li>
+   
+    <li style="--i:3">Debate</li>
+   
+       <li style="--i:4">IPL Auction</li>
+     <li style="--i:5">channel surfing</li>
+     <li style="--i:6">Potpourri</li>
+     <li style="--i:7">Short Film</li>
+    <li style="--i:8">Reels Making</li>
+         
+     <li class="fee-tag">🎟️ Registration Fee: ₹50/Per Person</li>
+    
+    <li style="--i:9">Shipwreck(solo)</li>
+ 
+     <li style="--i:10">Title(solo)</li>
+    <li style="--i:11">Poster Making(solo)</li>
+
+    <li style="--i:12">Photography(solo)</li>
+    
+  </ul>
+</div>
+
+  <h2 class="title">LucaFAma Forum</h2>
+  <div class="teaser-container">
+  <video
+    class="teaser-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    controls
+    preload="metadata">
+    <source src="teaser.mp4" type="video/mp4">
+    Your browser does not support video.
+  </video>
+</div>
+
+  <p class="sub">Click Here To Register</p>
+
+  <button><a href="event.html">Register Now🚀</a>
+  </button>
+<div class="fate-wrap">
+  <button class="fate-btn" id="fateBtn">🔮 FATE</button>
+  <p id="fateResult"></p>
+</div>
+
+</section>
+<!-- ===== FATE POPUP ===== -->
+<div id="fatePopup" class="fate-popup">
+  <div class="fate-glass">
+    <h3>🔮 Your Fate Is...</h3>
+    <p id="popupResult">Choosing your destiny ✨</p>
+    <button class="close-btn" onclick="closeFate()">Close</button>
+  </div>
+</div>
+<div id="scrollSurprise" class="scroll-surprise">
+  👀 Still here? LucaFama is waiting for you.
+</div>
+
+<footer class="footer">
+ <div class="footer-title">Follow Us</div>
+ <div class="social-icons">
+  <a href="https://www.instagram.com/negotium.26?igsh=cXl3NHczd21neXZu"><i class="fab fa-instagram"></i></a>
+ </div>
+ <p class="instagram-handle">@Negotium'26</p>
+</footer>
+
+<!-- ================= JS COUNTDOWN ================= -->
+<script>
+let surpriseShown = false;
+const surprise = document.getElementById("scrollSurprise");
+
+window.addEventListener("scroll", () => {
+  const scrollPercent =
+    (window.scrollY + window.innerHeight) /
+    document.documentElement.scrollHeight;
+
+  if(scrollPercent > 0.75 && !surpriseShown){
+    surpriseShown = true;
+    surprise.classList.add("show");
+
+    setTimeout(()=>{
+      surprise.classList.remove("show");
+    }, 3000);
+  }
+});
+const targetDate = new Date("2026-02-19 09:00:00").getTime();
+const timerBox = document.querySelector(".countdown-card");
+
+setInterval(() => {
+  let now = new Date().getTime();
+  let diff = targetDate - now;
+
+  if(diff <= 0){
+    timerBox.innerHTML = `
+      <h2>🎉 Event Started</h2>
+      <p style="font-weight:700;color:#e60023;">LucaFama is LIVE now!</p>
+    `;
+    return;
+  }
+
+  let d = Math.floor(diff/(1000*60*60*24));
+  let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  let m = Math.floor((diff%(1000*60*60))/(1000*60));
+  let s = Math.floor((diff%(1000*60))/1000);
+
+  days.innerText = d;
+  hours.innerText = h;
+  minutes.innerText = m;
+  seconds.innerText = s;
+
+},1000);
+
+window.addEventListener("load", () => {
+
+  const intro = document.getElementById("intro");
+  const main = document.getElementById("mainContent");
+  const header = document.getElementById("collegeHeader");
+
+  // start split (quick)
+  setTimeout(() => {
+    intro.classList.add("active");
+    main.classList.add("show");
+  }, 100);
+
+  // fade header + intro (1s total)
+  setTimeout(() => {
+    header.classList.add("hide");
+    intro.classList.add("hide");
+  }, 1000);
+
+  // remove intro
+  setTimeout(() => {
+    intro.remove();
+  }, 1200);
+
+});
+function sharePage(){
+  const pageLink = window.location.href;
+  const text = encodeURIComponent(
+    "🔥 LucaFama Events 🔥\nDG Vaishnav College\nCheck all events & register 👇"
+  );
+
+  window.open(
+    "https://wa.me/?text=" + text + "%0A" + encodeURIComponent(pageLink),
+    "_blank"
+  );
+}
+
+/* ================= VIEW + REG COUNTER ================= */
+
+let views = 240 + Math.floor(Math.random() * 30);
+let regs  = 50  + Math.floor(Math.random() * 15);
+
+const viewEl = document.getElementById("viewCount");
+const regEl  = document.getElementById("regCount");
+
+viewEl.innerText = views;
+regEl.innerText  = regs;
+
+setInterval(() => {
+  views += Math.floor(Math.random() * 5 - 2);
+  views = Math.max(120, views);
+  viewEl.innerText = views;
+}, 3000);
+
+setInterval(() => {
+  if (Math.random() > 0.1) {
+    regs++;
+    regEl.innerText = regs;
+  }
+}, 9000);
+
+
+/* ================= EVENTS ================= */
+
+const events = [
+  "Title",
+  "Debate",
+  "Business Quiz",
+  "Business Plan",
+  "Shipwreck",
+  "IPL Auction",
+  "Adzap",
+  "Potpourri",
+  "Corporate Walk",
+  "Poster Making",
+  "Reels Making",
+  "Photography",
+  "Short Film"
+];
+
+
+/* ================= FATE POPUP ================= */
+
+const fateBtn     = document.getElementById("fateBtn");
+const fatePopup   = document.getElementById("fatePopup");
+const popupResult = document.getElementById("popupResult");
+
+let shuffleInterval;
+
+fateBtn.addEventListener("click", () => {
+
+  fatePopup.classList.add("show");
+  document.body.classList.add("no-scroll"); // ✅ only this
+
+  let i = 0;
+  popupResult.innerText = "✨ Choosing your destiny...";
+
+  clearInterval(shuffleInterval);
+
+  shuffleInterval = setInterval(() => {
+    popupResult.innerText = "🎰 " + events[i % events.length];
+    i++;
+  }, 120);
+
+  setTimeout(() => {
+    clearInterval(shuffleInterval);
+    const finalEvent = events[Math.floor(Math.random() * events.length)];
+    popupResult.innerText = "🔥 You should try: " + finalEvent;
+  }, 1000);
+});
+
+function closeFate(){
+  fatePopup.classList.remove("show");
+  document.body.classList.remove("no-scroll"); // ✅ scroll back
+}
+const liveTimeEl = document.getElementById("liveTime");
+const eventDate = new Date("2026-02-19T09:00:00");
+
+function updateLiveTime(){
+  const now = new Date();
+
+  const timeString = now.toLocaleTimeString([],{
+    hour:"2-digit",
+    minute:"2-digit"
+  });
+
+  const daysLeft = Math.ceil(
+    (eventDate - now) / (1000*60*60*24)
+  );
+
+  liveTimeEl.innerText =
+    `It’s ${timeString} now • Negotium starts in ${daysLeft} days`;
+}
+
+updateLiveTime();
+setInterval(updateLiveTime, 60000);
+
+const nav = document.querySelector("nav");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 40) {
+    nav.classList.add("shrink");
+  } else {
+    nav.classList.remove("shrink");
+  }
+});
+
+</script>
+</body>
+</html>
